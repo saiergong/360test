@@ -1,3 +1,41 @@
+
+在test_ProxUrlExtractor_Extract1（）函数中添加了如下测试单元：
+"http://www.mytest.com?&&&from&&test=abf&query=http://test.com&&&", "http://test.com"
+"http://www.mytest.com?&&&&&&&&&&&&&&&&&&&&&&", ""
+"http://www.mytest.com?from=z=========a=b&&query=http://hello.com", "http://hello.com"
+"http://www.mytest.com?from=helo&u&test=bac&query=http://hello.com&&", "http:hello.com"
+"http://www.mytest.com?a=&c=&&=&query=http://hello.com", "http://hello.com"
+
+解决思路：
+可以把后面的字符串看成是一个个由‘&’分割的子串，对于每一个子串，分析有没有‘key=value’模式，如果有，返回sub_url。
+
+时间复杂度：由于只需要从头至尾扫描一遍字符串，切割成子串，然后对子串分析，而子串处理工作基本上就是找出‘=’，然后对key赋值，再去
+key集合中查找是否存在，所以时间复杂度为最多为O(2 * 字符串长度) + O(lgn) * m,其中n为key集合大小，m为子串数目。
+空间复杂度：由于只需要几个变量保存临时key等，所以为O(字符串长度）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ﻿
 该项目是一道简单的面试题。
 
