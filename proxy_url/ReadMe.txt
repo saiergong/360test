@@ -14,9 +14,27 @@ key集合中查找是否存在，所以时间复杂度为最多为O(2 * 字符�
 空间复杂度：由于只需要几个变量保存临时key等，所以为O(字符串长度）
 
 
-
-
-
+利用gprofile工具分析时间性能如下：
+-----------------------------------------------
+                0.00    0.00       1/1           main [5]
+[82]     0.0    0.00    0.00       1         test_ProxUrlExtractor_Extract1() [82]
+                0.00    0.00      19/66          qh::ProxyURLExtractor::Extract(std::set<std::string, std::less<std::string>, std::allocator<std::string> > const&, std::string const&) [30]
+                0.00    0.00      19/66          bool std::operator!=<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [39]
+                0.00    0.00       4/10          std::set<std::string, std::less<std::string>, std::allocator<std::string> >::insert(std::string const&) [58]
+                0.00    0.00       1/2           std::set<std::string, std::less<std::string>, std::allocator<std::string> >::set() [74]
+                0.00    0.00       1/2           std::set<std::string, std::less<std::string>, std::allocator<std::string> >::~set() [75]
+-----------------------------------------------
+                0.00    0.00       1/1           main [5]
+[83]     0.0    0.00    0.00       1         test_ProxUrlExtractor_Extract2() [83]
+                0.00    0.00      47/66          qh::ProxyURLExtractor::Extract(std::set<std::string, std::less<std::string>, std::allocator<std::string> > const&, std::string const&) [30]
+                0.00    0.00      47/66          bool std::operator!=<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [39]
+                0.00    0.00       6/10          std::set<std::string, std::less<std::string>, std::allocator<std::string> >::insert(std::string const&) [58]
+                0.00    0.00       1/2           std::set<std::string, std::less<std::string>, std::allocator<std::string> >::set() [74]
+                0.00    0.00       1/2           std::set<std::string, std::less<std::string>, std::allocator<std::string> >::~set() [75]
+-----------------------------------------------
+                0.00    0.00       1/1           std::_Rb_tree<std::string, std::string, std::_Identity<std::string>, std::less<std::string>, std::allocator<std::string> >::_M_insert_unique(std::string const&) [66]
+[84]     0.0    0.00    0.00       1         std::_Rb_tree_iterator<std::string>::operator--() [84]
+-----------------------------------------------
 
 
 
