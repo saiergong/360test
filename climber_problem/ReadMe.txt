@@ -8,6 +8,7 @@ main.cc文件解决climbers_problem问题，测试案例没有去读文件，只
 时间复杂度O(每个输入区间的长度和)
 空间复杂度O(n)
 
+本程序没有资源泄漏情况！
 
 
 题目内容请通过图片链接阅读：https://github.com/zieckey/interview/blob/master/climber_problem/The%20problem.png 
