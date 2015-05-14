@@ -10,6 +10,7 @@
 
 #define H_ARRAY_SIZE H_ARRAYSIZE
 
+
 void test_ProxUrlExtractor_Extract1()
 {
     using namespace qh;

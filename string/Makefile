@@ -2,14 +2,14 @@
 
 CC=gcc
 CXX=g++
-CFLAGS= -pg -c -D_DEBUG -fPIC -Wshadow -Wcast-qual -Wcast-align -Wwrite-strings -Wsign-compare -Winvalid-pch -fms-extensions -Wall -MMD
+CFLAGS= -g -c -D_DEBUG -fPIC -Wshadow -Wcast-qual -Wcast-align -Wwrite-strings -Wsign-compare -Winvalid-pch -fms-extensions -Wall -MMD
 CPPFLAGS=$(CFLAGS) -Woverloaded-virtual -Wsign-promo -fno-gnu-keywords 
 
 SRCS := $(wildcard *.cc) 
 OBJS := $(patsubst %.cc, %.o, $(SRCS))
 DEPS := $(patsubst %.o, %.d, $(OBJS))
 
-TARGET=unittest_climber
+TARGET=unittest_string
 
 all : $(TARGET) 
 
