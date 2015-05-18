@@ -57,6 +57,60 @@ void test3()
     assert(c == "3");
 }
 
+void test4()
+{
+    const char* ini_text= "a=1\nb=2\na=2\n"; 
+    qh::INIParser parser;
+    if (!parser.Parse(ini_text, strlen(ini_text), "\n", "=")) {
+        assert(false);
+    }
+
+    const std::string& a = parser.Get("a", NULL);
+    assert(a == "2");
+
+    std::string b = parser.Get("b", NULL);
+    assert(b == "2");
+
+    const std::string& c = parser.Get("c", NULL);
+    assert(c == "");
+}
+
+void test5()
+{
+    const char* ini_text= "b=1\nb=2\n"; 
+    qh::INIParser parser;
+    if (!parser.Parse(ini_text, strlen(ini_text), "\n", "=")) {
+        assert(false);
+    }
+
+    const std::string& a = parser.Get("a", NULL);
+    assert(a == "");
+
+    std::string b = parser.Get("b", NULL);
+    assert(b == "2");
+
+    const std::string& c = parser.Get("c", NULL);
+    assert(c == "");
+}
+
+void test6()
+{
+    const char* ini_text= "\n\na=1\nb=2\nc=2\na=2\n=\b=\n"; 
+    qh::INIParser parser;
+    if (!parser.Parse(ini_text, strlen(ini_text), "\n", "=")) {
+        assert(false);
+    }
+
+    const std::string& a = parser.Get("a", NULL);
+    assert(a == "2");
+
+    std::string b = parser.Get("b", NULL);
+    assert(b == "2");
+
+    const std::string& c = parser.Get("c", NULL);
+    assert(c == "2");
+}
+
 void unittest10(){
     const char* file = "unittest10.txt";
     qh::INIParser parser;
@@ -220,7 +274,7 @@ void unittest8(){
 }
 
 
-void test4()
+void test7()
 {
     const char* ini_text= "a=1\n\n\nb=2\n"; 
     qh::INIParser parser;
@@ -238,7 +292,7 @@ void test4()
     assert(c == "");
 }
 
-void test5()
+void test8()
 {
     const char* ini_text= "\n\n\na=1\n\n\nb=2\n\n\n\n"; 
     qh::INIParser parser;
@@ -256,7 +310,7 @@ void test5()
     assert(c == "");
 }
 
-void test6()
+void test9()
 {
     const char* ini_text= "xn\na=1\nfjdkfjd\nb=2\nc=3"; 
     qh::INIParser parser;
@@ -275,7 +329,7 @@ void test6()
 }
 
 
-void test7()
+void test10()
 {
     const char* ini_text= "a=1testb=2testc=3"; 
     qh::INIParser parser;
@@ -294,7 +348,7 @@ void test7()
 }
 
 
-void test8()
+void test11()
 {
     const char* ini_text= "a:1testb:2testc:3"; 
     qh::INIParser parser;
@@ -312,7 +366,7 @@ void test8()
     assert(c == "3");
 }
 
-void test9()
+void test12()
 {
     const char* ini_text= "a:testb:2testc:"; 
     qh::INIParser parser;
@@ -332,7 +386,7 @@ void test9()
 
 
 
-void test10()
+void test13()
 {
     const char* ini_text= ":1testb:2test:"; 
     qh::INIParser parser;
@@ -365,6 +419,9 @@ int main(int argc, char* argv[])
     test8();
     test9();
     test10();
+    test11();
+    test12();
+    test13();
 
 
     unittest1();

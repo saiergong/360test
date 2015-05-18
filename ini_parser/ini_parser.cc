@@ -80,8 +80,9 @@ namespace qh
 					value.assign(keypos + 1, line_end - keypos - 1);
 				else
 					value.assign(keypos + 1, ini_data_end - keypos - 1);
-				std::pair<std::string, std::string> pa(key, value);
-				keys_.insert(pa);
+				//std::pair<std::string, std::string> pa(key, value);
+				//keys_.insert(pa);
+				keys_[key] = value;
 				curpos = line_end + line_seperator.size();
 			}
 			if(line_end == NULL)
